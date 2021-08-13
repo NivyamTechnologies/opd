@@ -1,0 +1,57 @@
+<app-card [title]="title">
+  <form #AddlistForm = "ngForm" (ngSubmit)="formSubmitted()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " readonly name="ItemId" [ngModel]="model.ListId" >
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Name<span color="red">*</span>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control " required name="ItemName" [(ngModel)]="model.ListName">
+      </div>
+    </div>
+    
+    <br>
+    <br>
+      <div class="row">
+        <div class="col-lg-5 col-sm-5 col-xs-12" >
+        <div class="list">
+          <label style="font-size: larger;margin: 4%">Select Service</label>
+          <ul class="list-group">
+            <li class="list-group-item" [ngStyle]="{'background-color' : selected.indexOf(books['ItemId'])!=-1?'#65adff':'',
+                                                    'color' : selected.indexOf(books['ItemId'])!=-1?'#ffffff':'black'}" *ngFor="let books of Items" (click)="onSelect(books)">
+            <div style="text-align: center;">
+              {{books['ItemName']}}(<small>{{books['setcode']}}</small>)
+            </div> 
+            <div style="text-align: right;">
+              <small>MRP. {{books['rate']}}</small>
+            </div>
+            </li>
+          </ul>
+        </div> 
+        </div>
+        <div class="col-lg-5 col-sm-5 col-xs-12" style="text-align: right ;" >
+          <div class="list">
+            <label style="font-size: larger;margin: 4%">Service Selected</label>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let books of SelectedBooks" style="color : black">
+                {{books['ItemName']}}
+              </li>
+            </ul>
+            
+          </div>
+          <div style="text-align: center;">
+            <label style="font-weight: bolder;">Total Service Selected : {{SelectedBooks.length}}</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div style="text-align: center;">
+        <button type="submit" [disabled]="selected.length ==0" class="btn btn-primary">submit</button>
+      </div>
+    </form>
+</app-card>

@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+    </div>
+    <div class="card-block">
+
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Doctor Id</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                              <label class="input-group-text"><i class="icofont icofont-ui-volume"></i></label>
+                                                            </span>
+                    <input type="text" [(ngModel)]="myvar.doctorId" class="form-control" readonly="true" placeholder="doctorId">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Doctor Name</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                              <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                          </span>
+                    <input type="text" [(ngModel)]="myvar.doctorName" class="form-control form-control-bold" placeholder="doctorName">
+                </div>
+            </div>
+        </div>
+     
+
+        <div style="text-align: center; padding: 20px;"> <button class='btn btn-grd-info btn-round' (click)='ready()'>Save</button> </div>
+    </div>
+</div>

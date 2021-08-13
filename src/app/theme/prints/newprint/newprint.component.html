@@ -1,0 +1,122 @@
+<app-card title="New Print">
+  <div style="text-align: right">
+    <a (click)="printInvoice()" class="btn btn-info btn-sm" style="border-radius: 15px; font-size: 15px; background-color: darkblue; border-color: darkblue; color: white;">
+      <span class="glyphicon glyphicon-print"></span> Print
+    </a>
+  </div>
+  <br>
+
+  <div id="invoice" *ngIf = 'cname != "Sangal & Sons Food Product"'>
+
+    <div style="border: 1px solid black; height: 100%;">
+      <div class="row">
+        <div class="col-md-2" style="padding-top: 20px;padding-left: 30px;">
+        <img src="http://easybizindia.com/odp/assets/images/logo.jpeg" style="height: 60px;width: 160px">
+      </div>
+      <div class="col-md-10" style="text-align: center; margin-top: 2%;padding-right: 14%;
+      ">
+        <h3>{{company['CompanyName']}}</h3>
+        <h6>{{company['CompanyAddress']}}</h6>
+        <h6>{{company['CompanyContact']}}</h6>
+        <h6>{{state}} Receipt</h6>
+      
+       
+      </div>
+      </div>
+      <div class="row" style="font-size: 15px; border-top: 1px solid black; margin: 0mm;">
+        <div class="col-sm" style="border-right: 1px solid black; padding-top: 2mm; padding-bottom: 2mm;">
+          <div class="row shiftBlock" style="margin: 0mm;">
+            <div class="col-3">
+                Patient Name
+            </div>
+            :
+            <div class="col-sm">
+              {{model['PatientName']}}
+            </div>
+            <div class="col-3">
+              S No.
+          </div>
+          :
+          <div class="col-sm">
+            {{model['SaleId']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-3">
+            Patient Address
+          </div>
+          :
+          <div class="col-sm">
+            {{model['PatientAddress']}}
+          </div>
+          <div class="col-3">
+            Date
+        </div>
+        :
+        <div class="col-sm">
+          {{model['CreatedDate']}}
+        </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-3">
+              Age
+          </div>
+          :
+          <div class="col-sm">
+            {{model['Age']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-3">
+              Sex
+          </div>
+          :
+          <div class="col-sm">
+            {{model['Sex']}}
+          </div>
+          </div>
+          <div class="row shiftBlock" style="margin: 0mm;">
+          <div class="col-3">
+              Consulting Doctor
+          </div>
+          :
+          <div class="col-sm">
+              {{model['doctorname']}}
+          </div>
+          </div>
+        </div>
+        
+      </div>
+      
+        <table>
+          <tr>
+            <th>S.N.</th>
+            <th>{{state}} Service Details</th>
+            <th>Qty.</th>
+            <th>Rate</th>
+            <th>Disc(%)</th>
+            <th>Amount</th>
+          </tr>
+          <tr *ngFor = 'let data of dataRows, let i = index'>
+            <td>{{i+1}}</td>
+            <td>{{data.ItemName}}</td>
+            <td>{{data.Quantity}}</td>
+            <td>{{data.rate}}</td>
+            <td>{{data.disc}}</td>
+            <td>{{data.NetPrice}}</td>
+          </tr>
+          <tr  *ngIf = 'discount != 0' >
+           
+            <td colspan="5">Discount</td>
+            <td>{{model['discount']}}%</td>
+          </tr>
+          <tr>
+            <td colspan="4">{{words}}</td>
+            <td>Total Amt.</td>
+            <td>{{model['NetAmount']}}</td>
+          </tr>
+        </table>
+    </div>
+  </div>
+
+</app-card>

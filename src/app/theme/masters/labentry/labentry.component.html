@@ -1,0 +1,178 @@
+<app-card [title]="'Lab Recipt'">
+
+
+
+
+  <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+        Id
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="SaleId" [ngModel]="model['SaleId']" readonly> 
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Patient Name
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="PatientName" [(ngModel)]="model['PatientName']">
+      </div>
+    </div>
+    <div class="row">
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Patient MobileNo
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="PatientMobile" [(ngModel)]="model['PatientMobile']">
+      </div>
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Date
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+       <input type="date" class="form-control" name="CreatedDate" [(ngModel)]="model['CreatedDate']" [readonly]="Type=='EditSale'">
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Patient Age
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <input class="form-control" name="Age" [(ngModel)]="model['Age']">
+      </div>
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Patient Sex
+     </div>
+     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+       <select class="form-control" name="Blltype" [(ngModel)]="model['Sex']">
+         <option value="MALE">MALE</option>
+         <option value="FEMALE">FEMALE</option>
+         <option value="OTHER">OTHER</option>
+       </select>
+      
+     </div>
+    </div>
+    <div class="row">
+     <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+       Patient Address
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+        <input class="form-control" name="PatientAddress" [(ngModel)]="model['PatientAddress']">
+      </div></div>
+ 
+      <div class="row">
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+         Doctor Name
+        </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+         <select class="form-control" name="Doctor Name"  [(ngModel)]="model['doctorname']" >
+           <option *ngFor="let school of DoctorList" [value]="school['doctorName']">
+             {{school['doctorName']}}
+           </option>
+         </select>
+       </div>
+ 
+       </div>
+  
+  </form>
+  <!-- <div style="margin:2%;text-align: center;">
+   <button class="btn btn-sm btn-primary" (click)="getBooks()">Get Operation</button>
+ </div> -->
+   <div style="margin:2%;">
+     <button class="btn btn-sm btn-success" (click)="addrow()">
+       Add Service
+     </button>
+ 
+   </div>
+ 
+   <ngx-datatable 
+   class="data-table"
+   [rows]="dataRows"
+   [columnMode]="'force'" 
+   [headerHeight]="50" 
+   [footerHeight]="100" 
+   [rowHeight]="45" 
+   [scrollbarH]="true" 
+   [limit]="50">
+ 
+ 
+   <ngx-datatable-column name="Service Name" prop="ItemId" >
+     <ng-template ngx-datatable-cell-template let-row="row" let-rowIndex="rowIndex" let-value="value">
+       <select class="form-control" [ngModel]="row['ItemId']"
+        (change)="updateItem(rowIndex,'ItemId',$event.target.value)">
+         <option *ngFor="let item of ItemList" [value]="item['ItemId']">
+           {{item['ItemName']}}
+         </option>
+       </select>
+     </ng-template>
+   </ngx-datatable-column>
+ 
+ 
+   <ngx-datatable-column name="Rate" prop="rate">
+     <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+       <input type="number" id ="nextrate"min="0"  class="form-control" (change)="update1(rowIndex,'rate',$event.target.value)" [value]="value">
+     </ng-template>
+   </ngx-datatable-column>
+   
+   <ngx-datatable-column name="disc" prop="disc"  width="100"  >
+     <ng-template let-row="row" ngx-datatable-cell-template  let-rowIndex="rowIndex" let-row="row" let-value="value">
+       <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'disc',$event.target.value)" [value]="value">
+     </ng-template>
+   </ngx-datatable-column>
+   <ngx-datatable-column name="Qty" prop="Quantity" width="100">
+     <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-row="row" let-value="value">
+       <input type="number" min="0"  class="form-control" (change)="update1(rowIndex,'Quantity',$event.target.value)" [value]="value">
+     </ng-template>
+   </ngx-datatable-column>
+ 
+ 
+   <ngx-datatable-column name="Amount" prop="NetPrice">
+     <ng-template ngx-datatable-cell-template let-row="row">
+       {{row['NetPrice']}}
+     </ng-template>
+   </ngx-datatable-column>
+   <ngx-datatable-column width="10">
+     <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+       <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleterow(rowIndex)"></i>
+     </ng-template>
+   </ngx-datatable-column>
+ 
+ </ngx-datatable>
+ 
+ <div style="margin:2%">
+   <form #SaleOrder="ngForm" (ngSubmit)="submit()">
+     <div class="row">
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+         Total Amount
+       </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+         <input class="form-control" name="TotalAmount" [ngModel]="model['TotalAmount']" readonly>
+       </div>
+     </div>  
+    
+     <div class="row">
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+         Discount
+       </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+         <input class="form-control" type="number"  name="discount" [(ngModel)]="model['discount']" (ngModelChange)="applydiscount()">
+       </div>
+     </div>
+    <!--  <div class="row">
+       <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+         Net Amount
+       </div>
+       <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+         <input class="form-control" name="NetAmount" [ngModel]="model['NetAmount']" readonly>
+       </div>
+     </div> -->
+     <div style="text-align: center;margin:2%">
+       <button type="submit" class="btn btn-success" [disabled]="dataRows.length==0">Submit</button>
+     </div>
+ 
+   </form>
+ 
+   <div style="text-align: right;" *ngIf="Type=='EditSale'">
+     <button class="btn btn-success" (click)="printInvoice()">Generate OPD</button>
+   </div>
+ </div>
+ </app-card>

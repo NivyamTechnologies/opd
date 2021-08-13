@@ -1,0 +1,45 @@
+<app-card title="Opd browser">
+  <hr>
+  <div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm"></div>
+    <div class="col-sm">
+    </div>
+   <input type ="text" class="col-sm form-control form-control-sm"   placeholder="Search for Name"  (keydown.enter)="srch($event)"/><span></span>
+  </div>
+  
+  
+    <ngx-datatable   #table class="data-table" 
+  [rows]="dataRows"
+  [columns]="dataColumns" 
+  
+  [columnMode]="'force'" 
+  [headerHeight]="50" 
+  [footerHeight]="100" 
+  [rowHeight]="45" 
+  [scrollbarH]="true" 
+  [limit]="50">
+
+  <ngx-datatable-column width="50"  *ngIf = 'uservald == true'> 
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <i class="fa fa-edit fa-2x" style="color:blueviolet;cursor:pointer" (click)="editSale(row)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column width="50" >
+    <ng-template let-row="row" ngx-datatable-cell-template>
+      <i class="fa fa-print fa-2x" style="color:blueviolet;cursor:pointer" (click)="printSale(row)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column *ngFor="let col of dataColumns" [name]="col['name']" [prop]="col['prop']">
+  </ngx-datatable-column>
+  <ngx-datatable-column width="90"  *ngIf = 'uservald == true'>
+    <ng-template let-row="row" let-rowIndex = "rowIndex" ngx-datatable-cell-template>
+      <i class="fa fa-trash fa-2x" style="color:blueviolet;cursor:pointer" (click)="deleteSale(row['OpdId'],rowIndex)"></i>
+    </ng-template>
+  </ngx-datatable-column>
+</ngx-datatable>
+
+<div style="text-align: right;margin-top : 2%">
+  <button class="btn btn-primary btn-sm" (click)="exportToExcel()">Export</button>
+</div>
+</app-card>

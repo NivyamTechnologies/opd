@@ -1,0 +1,101 @@
+<div class="card">
+    <div class="card-header">
+    </div>
+    <div class="card-block">
+
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Service Id</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                                <label class="input-group-text"><i class="icofont icofont-ui-volume"></i></label>
+                                                              </span>
+                    <input type="text" disabled [(ngModel)]="myvar.ItemId" class="form-control" placeholder="ServiceId">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Service Name</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                                <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                            </span>
+                    <input type="text" [(ngModel)]="myvar.ItemName" class="form-control form-control" placeholder="Service Name" required>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Active</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                      <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                     </span>
+                   
+                   <select class="form-control" [(ngModel)]="myvar.Active">
+                       <option  value="Y"> Y</option>
+                       <option  value="N">N</option>
+                   </select>
+                                                           
+                </div>
+            </div>
+        </div> 
+
+      
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Opening Qty</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                                <label class="input-group-text"><i class="icofont icofont-shield"></i></label>
+                                                            </span>
+                    <input type="number" class="form-control form-control-lowercase" [(ngModel)]="myvar.Qty" placeholder="Qty">
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Sale Rate</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                                <label class="input-group-text"><i class="icofont icofont-presentation"></i></label>
+                                                            </span>
+                    <input type="number" class="form-control form-control-left" [(ngModel)]="myvar.rate" placeholder="rate	">
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <label class="col-sm-4 col-lg-2 col-form-label">Type</label>
+            <div class="col-sm-8 col-lg-10">
+                <div class="input-group">
+                    <span class="input-group-prepend">
+                                                                <label class="input-group-text"><i class="icofont icofont-queen"></i></label>
+                                                            </span>
+                   
+                   <select class="form-control" [(ngModel)]="myvar.type">
+                       <option >
+                           Opd
+                       </option>
+                       <option >
+                        Ipd
+                    </option>
+                    <option >
+                        Lab
+                    </option>
+                    <option >
+                        Other
+                    </option>
+                   </select>
+                                                           
+                </div>
+            </div>
+        </div>
+     
+
+        <div style="text-align: center; padding: 20px;"> <button class='btn btn-grd-info btn-round' (click)='ready()'>Save</button> </div>
+    </div>
+</div>
