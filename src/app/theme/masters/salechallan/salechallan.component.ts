@@ -87,7 +87,7 @@ company:any;
       'freeqty':0,
       'disc' : 0,
       'discrate':0,
-
+       'DocNo':28,
       'Qty' : this.ItemList[0]['Qty'],
       'NetPrice' : this.ItemList[0]['rate']
 
@@ -262,7 +262,7 @@ else{
  {
    this.dataRows = []
    books.forEach(book=>{
-     this.dataRows.push(Object.assign({'Quantity':1,'NetPrice' : ''},book))
+     this.dataRows.push(Object.assign({'Quantity':1,'NetPrice' : '','DocNo':28},book))
    })
    console.log("thisisdatarows",this.dataRows)
    this.updateNetPrice(-1)

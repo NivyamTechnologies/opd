@@ -12,7 +12,7 @@ export class LabbrowserComponent implements OnInit {
 
   ngOnInit() {
    
-    if(sessionStorage.getItem("UserId") == 'Aligarian'){
+    if(sessionStorage.getItem("UserId") == 'Hamdarddialysis'){
       this.uservald = true
     }
     this.getdata()

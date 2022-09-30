@@ -14,7 +14,7 @@ export class SchallanbrowserComponent implements OnInit {
 
   ngOnInit() {
        
-    if(sessionStorage.getItem("UserId") == 'Aligarian'){
+    if(sessionStorage.getItem("UserId") == 'Hamdarddialysis'){
       this.uservald = true
     }
     this.getdata()
@@ -81,7 +81,7 @@ srch(event){
      let model = data[0]['data'][0]
   
      let dataRows = data[1]['data']
-     localStorage.setItem("invoice",JSON.stringify({"form":model,"table":dataRows,"state":"OPD"})) // storing data to print on invoice
+     localStorage.setItem("invoice",JSON.stringify({"form":model,"table":dataRows,"state":"IPD"})) // storing data to print on invoice
      this.route.navigateByUrl('/print/newprint') // taking to the invoice print page
  
       

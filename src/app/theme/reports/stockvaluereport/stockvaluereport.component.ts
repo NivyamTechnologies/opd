@@ -22,7 +22,7 @@ export class StockvaluereportComponent implements OnInit {
   to = new Date().toISOString().split('T')[0]
   getReport()
   {
-    this.api.Post("/total/getBrowser",{Condition : ""},["EntityName=StockvalueReport","Type=Report"]).subscribe(data=>{
+    this.api.Post("/total/getBrowser",{Condition : ""},["EntityName=ipdStockReport","Type=Report"]).subscribe(data=>{
       // this.dataRows = data['data']
       console.log("browserdata",data)
       this.dataColumns = data['Columns']

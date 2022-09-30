@@ -176,6 +176,14 @@ const MENUITEMS = [
         icon: 'ti-crown'
       },
       {
+        state: 'stockvaluereport',
+        short_label: 'FW',
+        main_state: 'reports',
+        name: 'Stock Report',
+        type: 'link',
+        icon: 'ti-crown'
+      },
+      {
         state: 'list',
         short_label: 'FW',
         main_state: '',

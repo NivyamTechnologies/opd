@@ -7,7 +7,7 @@ const routes: Routes = [
     path: '',
     component: EcommerceComponent,
     data: {
-      title: 'Rainbow Hospital',
+      title: 'Irene  Hospital',
       status: false
     }
   }

@@ -16,12 +16,14 @@ export class LedgerBrowsersComponent implements OnInit {
     this.getLedgerBrowser()
   }
 
-  dataColumns = [{"name" : "Party Name", "prop" : "PartyName", "width" : "50"},
-  {"name" : "Amount", "prop" : "Amount", "width" : "50"},
-  {"name" : "Ledger Type", "prop" : "LedgerType", "width" : "30"},
+  dataColumns = [
+    {"name" : "Date", "prop" : "date", "width" : "40"}, 
+    {"name" : "Party", "prop" : "PartyId", "width" : "50"},
+  {"name" : "Debit", "prop" : "total", "width" : "50"},
+  {"name" : "Credit", "prop" : "payment", "width" : "30"},
   {"name" : "Narration", "prop" : "Narration", "width" : "50"},
-  {"name" : "Mode", "prop" : "Mode", "width" : "30"},
-  {"name" : "Date", "prop" : "Date", "width" : "40"} 
+  {"name" : "Balance", "prop" : "Balance", "width" : "30"},
+
 ]
   dataRows = []
   ledgerType  = ''
@@ -45,12 +47,9 @@ export class LedgerBrowsersComponent implements OnInit {
 
   getLedgerBrowser()
   {
-    let condn = this.ledgerType !=''?"Where LedgerType='"+this.ledgerType+"'":"where 1=1"
-    this.api.Post("/total/getBrowser",{Condition : condn},["EntityName=LedgerBrowser"]).subscribe(data=>{
-      // this.dataRows = data['data']
-      console.log("browserdata",data)
-      this.dataColumns = data['Columns']
-      this.dataColumns = [...this.dataColumns]
+    let qry = "select * from (	select PartyId,total,0 payment,concat('Bill No  ',DocNo) Narration,DocDate date	from t_doc_header where PartyId=3 UNION ALL select PartyId,0 total,Amount,Narration,Date date from  Payment  where PartyId=3)v1  order by date"
+    this.api.Post("/users/executeSelectStatement",{Query : qry}).subscribe((data)=>{
+
       this.dataRows = data['Data']['data']
       this.dataRows = [...this.dataRows]
     })

@@ -91,7 +91,7 @@ export class BooklistComponent implements OnInit {
   // Get Books according to the Selecting Party/Publisher
   getItems()
   {
-    let sql = "Select * from item"
+    let sql = "Select * from item where type='Ipd'"
     this.api.Post("/users/executeSelectStatement",{Query : sql}).subscribe(data=>{
       this.Items = data['data']
       console.log(data)
